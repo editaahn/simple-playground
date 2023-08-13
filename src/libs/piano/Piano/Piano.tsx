@@ -9,7 +9,11 @@ export const Piano = binder(usePiano, ({ checkPressed, note }) => {
     <Stack direction="row">
       <PianoKeySeperator note={note}>
         {({ groups }) =>
-          <>{groups.map(pianoKeys => <PianoKeyGroup pianoKeys={pianoKeys} checkPressed={checkPressed} />)}</>
+          <>
+            {groups.map(pianoKeys =>
+              <PianoKeyGroup pianoKeys={pianoKeys} checkPressed={checkPressed} />
+            )}
+          </>
         }
       </PianoKeySeperator>
     </Stack>
