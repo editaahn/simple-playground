@@ -1,8 +1,5 @@
-import { FC, useState } from "react";
+import { Piano } from "../libs/piano/Piano/Piano";
 
-const NOTES = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-
-export const PianoPage: FC<Props> = () => {
-  return <div></div>;
+export const PianoPage = () => {
+  return <Piano note={['a', 's', 'd', 'f', 'g', 'h', 'j', 'k']} />;
 };
-
