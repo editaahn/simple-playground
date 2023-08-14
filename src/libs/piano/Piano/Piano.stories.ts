@@ -14,6 +14,6 @@ type Story = StoryObj<typeof meta>;
 
 export const PianoStory: Story = {
   args: {
-    note: ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k'],
+    note: ['q', '2', 'w', '3', 'e', '4', 'r', 't', '6', 'y', '7', 'u'],
   },
 };

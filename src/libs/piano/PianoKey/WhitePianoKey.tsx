@@ -1,9 +1,25 @@
-import { Box } from "@mui/material";
+import { PianoKey } from "./PianoKey";
 
 type PianoKeyProps = {
   pressed: boolean;
+  keyName: string;
 };
 
-export const WhitePianoKey = ({ pressed }: PianoKeyProps) => (
-  <Box bgcolor={pressed ? "silver" : "white"} width={30} height={200} />
-);
+const SIZE = {
+  width: 4,
+  height: 16,
+};
+
+export const WhitePianoKey = ({ pressed, keyName }: PianoKeyProps) =>
+  <PianoKey
+    pressed={pressed}
+    keyName={keyName}
+    width={SIZE.width}
+    height={SIZE.height}
+    style={{
+      bgcolor: pressed ? "silver" : "white",
+      borderLeft: '1px solid #bbb',
+      borderBottom: '1px solid #bbb',
+      borderRadius: '0 0 5px 5px',
+    }}
+  />;

@@ -1,21 +1,24 @@
-import { Stack } from "@mui/material";
-import { binder } from "../../../utils/binder";
+import { binder } from "@utils";
 import { usePiano } from "./usePiano";
-import { PianoKeySeperator } from "../PianoKeySeperator/PianoKeySeperator";
-import { PianoKeyGroup } from "../PianoKeyGroup/PianoKeyGroup";
+import { PianoBezel } from "../PianoBezel";
+import { PianoKeySeperator } from "../PianoKeySeperator";
+import { PianoKeyGroup } from "../PianoKeyGroup";
 
 export const Piano = binder(usePiano, ({ checkPressed, note }) => {
   return (
-    <Stack direction="row">
+    <PianoBezel>
       <PianoKeySeperator note={note}>
         {({ groups }) =>
           <>
             {groups.map(pianoKeys =>
-              <PianoKeyGroup pianoKeys={pianoKeys} checkPressed={checkPressed} />
+              <PianoKeyGroup pianoKeys={pianoKeys} checkPressed={checkPressed} key={pianoKeys.join()} />
             )}
           </>
         }
       </PianoKeySeperator>
-    </Stack>
+    </PianoBezel>
   );
-}, { displayName: 'Piano', memoize: false });
+}, {
+  displayName: 'Piano',
+  memoize: false
+});
