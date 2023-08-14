@@ -14,6 +14,10 @@ export default defineConfig({
         find: "@apis",
         replacement: "/src/apis"
       },
+      {
+        find: "@libs",
+        replacement: "/src/libs"
+      },
     ],
   },
 });
