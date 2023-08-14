@@ -1,6 +1,5 @@
 import { Stack } from "@mui/material";
-import { BlackPianoKey } from "../PianoKey/BlackPianoKey";
-import { WhitePianoKey } from "../PianoKey/WhitePianoKey";
+import { BlackPianoKey, WhitePianoKey } from "../PianoKey";
 
 type PianoKeyGroup = {
   pianoKeys: string[];

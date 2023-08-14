@@ -1,8 +1,8 @@
 import { Stack } from "@mui/material";
-import { binder } from "../../../utils/binder";
+import { binder } from "@utils";
 import { usePiano } from "./usePiano";
-import { PianoKeySeperator } from "../PianoKeySeperator/PianoKeySeperator";
-import { PianoKeyGroup } from "../PianoKeyGroup/PianoKeyGroup";
+import { PianoKeySeperator } from "../PianoKeySeperator";
+import { PianoKeyGroup } from "../PianoKeyGroup";
 
 export const Piano = binder(usePiano, ({ checkPressed, note }) => {
   return (
