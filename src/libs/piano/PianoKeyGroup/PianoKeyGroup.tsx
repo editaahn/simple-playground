@@ -12,10 +12,12 @@ export const PianoKeyGroup = ({ pianoKeys, checkPressed }: PianoKeyGroup) =>
       i % 2 === 0 ?
         <WhitePianoKey
           pressed={checkPressed(pianoKey)}
+          keyName={pianoKey}
           key={pianoKey}
         />
         : <BlackPianoKey
           pressed={checkPressed(pianoKey)}
+          keyName={pianoKey}
           key={pianoKey}
           index={i}
         />
