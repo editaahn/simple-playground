@@ -17,7 +17,7 @@ export const PianoKeyGroup = ({ pianoKeys, checkPressed }: PianoKeyGroup) =>
         : <BlackPianoKey
           pressed={checkPressed(pianoKey)}
           key={pianoKey}
-          left={(i + 1) * 2}
+          index={i}
         />
     )}
   </Stack>;
