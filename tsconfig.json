@@ -6,6 +6,12 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    "baseUrl": "",
+    "paths": {
+      "@apis": ["src/apis/index.ts"],
+      "@utils": ["src/utils/index.ts"],
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
