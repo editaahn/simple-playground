@@ -10,6 +10,7 @@
     "paths": {
       "@apis": ["src/apis/index.ts"],
       "@utils": ["src/utils/index.ts"],
+      "@libs": ["src/libs/index.ts"],
     },
 
     /* Bundler mode */
