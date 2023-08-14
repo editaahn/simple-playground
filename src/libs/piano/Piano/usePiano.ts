@@ -20,7 +20,10 @@ export const usePiano = ({ note }: UsePianoProps) => {
         setPressed(new Set());
       }
     });
-  }, []);
+  }, [note]);
 
-  return { checkPressed, note };
+  return {
+    checkPressed,
+    note
+  };
 };

@@ -1,1 +1,1 @@
-export { Piano } from './Piano/Piano'
+export { Piano } from './Piano';

@@ -11,11 +11,14 @@ export const Piano = binder(usePiano, ({ checkPressed, note }) => {
         {({ groups }) =>
           <>
             {groups.map(pianoKeys =>
-              <PianoKeyGroup pianoKeys={pianoKeys} checkPressed={checkPressed} />
+              <PianoKeyGroup pianoKeys={pianoKeys} checkPressed={checkPressed} key={pianoKeys.join()} />
             )}
           </>
         }
       </PianoKeySeperator>
     </Stack>
   );
-}, { displayName: 'Piano', memoize: false });
+}, {
+  displayName: 'Piano',
+  memoize: false
+});

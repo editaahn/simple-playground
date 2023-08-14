@@ -1,3 +1,4 @@
+import { Stack } from "@mui/material";
 import { BlackPianoKey } from "../PianoKey/BlackPianoKey";
 import { WhitePianoKey } from "../PianoKey/WhitePianoKey";
 
@@ -7,7 +8,7 @@ type PianoKeyGroup = {
 };
 
 export const PianoKeyGroup = ({ pianoKeys, checkPressed }: PianoKeyGroup) =>
-  <>
+  <Stack direction="row" position="relative">
     {pianoKeys.map((pianoKey, i) =>
       i % 2 === 0 ?
         <WhitePianoKey
@@ -17,6 +18,7 @@ export const PianoKeyGroup = ({ pianoKeys, checkPressed }: PianoKeyGroup) =>
         : <BlackPianoKey
           pressed={checkPressed(pianoKey)}
           key={pianoKey}
+          left={(i + 1) * 2}
         />
     )}
-  </>;
+  </Stack>;
