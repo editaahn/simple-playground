@@ -1,10 +1,10 @@
-// import { useEmployeeChoice } from "@libs";
+import { useEmployeeChoice } from "@libs";
 import { EmployeeList } from "@libs";
 import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 
 export const EmployeeChoicePage = () => {
-  // const { workers, addWorker, removeWorker } = useEmployeeChoice();
+  const { addEmployeeId, removeEmployeeId } = useEmployeeChoice();
 
   return (
     <Stack direction="column">
@@ -13,7 +13,7 @@ export const EmployeeChoicePage = () => {
         {/* <WorkerChoiceButton choices={workers} /> */}
       </Stack>
       <Stack direction="row">
-        <EmployeeList addEmployee={() => console.log('add')} removeEmployee={() => console.log('remove')} />
+        <EmployeeList addEmployee={addEmployeeId} removeEmployee={removeEmployeeId} />
         {/* <SelectedWorkersList workers={workers} removeWorker={removeWorker} /> */}
       </Stack>
     </Stack>);

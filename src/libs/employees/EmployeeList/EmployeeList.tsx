@@ -1,7 +1,8 @@
 import { Accordion, AccordionDetails, AccordionSummary, Stack } from '@mui/material';
 import { binder } from '@utils';
-import { Employee, useEmployeeList } from './useEmployeeList';
+import { useEmployeeList } from './useEmployeeList';
 import { EmployeeCell } from '../EmployeeCell';
+import { Employee } from '../types';
 
 export const EmployeeList = binder(useEmployeeList, ({
   employees,
@@ -36,4 +37,7 @@ export const EmployeeList = binder(useEmployeeList, ({
       {employees?.map(employee => renderRecursiveAccordion(employee))}
     </Stack>
   );
+}, {
+  memoize: false,
+  displayName: 'EmployeeList'
 });
