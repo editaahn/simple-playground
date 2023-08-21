@@ -5,26 +5,29 @@ import { EmployeeCell } from '../EmployeeCell';
 import { Employee } from '../types';
 
 export const EmployeeList = binder(useEmployeeList, ({
-  employees,
-  selectEmployee
+  employeeTree,
+  selectEmployee,
+  checkSelected
 }) => {
   const renderRecursiveAccordion = (employee: Employee) =>
     <Accordion disableGutters={true} key={employee.id}>
       <AccordionSummary>
         <EmployeeCell
           {...employee}
-          select={checked => selectEmployee(checked, employee.id)}
+          select={checked => selectEmployee(checked, employee)}
           name={`${employee.first_name} ${employee.last_name}`}
+          checked={checkSelected(employee.id)}
         />
       </AccordionSummary>
       <AccordionDetails>
-        <Stack direction="column">
+        <Stack direction="column" spacing="16px">
           {employee.children.map((child) =>
             child.children ? renderRecursiveAccordion(child) :
               <EmployeeCell
                 {...child}
-                select={checked => selectEmployee(checked, child.id)}
+                select={checked => selectEmployee(checked, child)}
                 name={`${child.first_name} ${child.last_name}`}
+                checked={checkSelected(child.id)}
                 key={child.id}
               />
           )}
@@ -34,7 +37,7 @@ export const EmployeeList = binder(useEmployeeList, ({
 
   return (
     <Stack direction="column">
-      {employees?.map(employee => renderRecursiveAccordion(employee))}
+      {employeeTree ? renderRecursiveAccordion(employeeTree) : null}
     </Stack>
   );
 }, {
