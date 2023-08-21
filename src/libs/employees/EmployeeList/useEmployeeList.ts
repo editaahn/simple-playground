@@ -1,18 +1,10 @@
 import { useQuery } from "react-query";
 import { findEmployees } from "@apis";
+import { Employee } from "../types";
 
 type UseEmployeeListProps = {
   addEmployee: (id: number) => void;
   removeEmployee: (id: number) => void;
-};
-
-export type Employee = {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
-  children: Employee[];
 };
 
 export function useEmployeeList({ addEmployee, removeEmployee }: UseEmployeeListProps) {
