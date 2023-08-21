@@ -1,22 +1,23 @@
-import { Avatar, Checkbox, TableCell, Typography } from '@mui/material';
+import { Avatar, Checkbox, Typography } from '@mui/material';
 import type { FC } from 'react';
-import { Employee } from '../EmployeeList';
 import { Stack } from '@mui/system';
+import { Employee } from '../types';
 
 type EmployeeCellProps = {
   select: (checked: boolean) => void;
   name: string;
+  checked: boolean;
 } & Omit<Employee, 'first_name' | 'last_name' | 'id'>;
 
-export const EmployeeCell: FC<EmployeeCellProps> = ({ select, name, avatar }) =>
-  <TableCell>
-    <Stack direction="row" alignItems="center" gap="10px">
-      <Avatar alt={name} src={avatar} />
-      <Typography variant="body2" fontWeight="bold">
-        {name}
-      </Typography>
-      <Checkbox
-        onClick={event => event.stopPropagation()}
-        onChange={event => select(event.target.checked)} />
-    </Stack>
-  </TableCell>;
+export const EmployeeCell: FC<EmployeeCellProps> = ({ select, name, avatar, checked }) =>
+  <Stack direction="row" alignItems="center" gap="10px">
+    <Avatar alt={name} src={avatar} />
+    <Typography variant="body2" fontWeight="bold">
+      {name}
+    </Typography>
+    <Checkbox
+      checked={checked}
+      onClick={event => event.stopPropagation()}
+      onChange={event => select(event.target.checked)}
+    />
+  </Stack>;

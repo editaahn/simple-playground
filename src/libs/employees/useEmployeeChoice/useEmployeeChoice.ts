@@ -1,19 +1,24 @@
 import { useState } from "react";
+import { Employee } from "../types";
 
 export function useEmployeeChoice() {
-  const [employeeIds, setEmployeeIds] = useState<number[]>([]);
+  const [employee, setEmployee] = useState<Partial<Employee>[]>([]);
 
-  const addEmployeeId = (id: number) => {
-    setEmployeeIds(previous => [...previous, id])
+  const addEmployee = (employee: Partial<Employee>) => {
+    setEmployee(previous => [...previous, employee])
   };
 
-  const removeEmployeeId = (id: number) => {
-    setEmployeeIds(previous => previous.filter(storedId => id !== storedId));
+  const removeEmployee = (id: number) => {
+    setEmployee(previous => previous.filter(stored => id !== stored.id));
   };
+
+  const checkSelected = (id: number) =>
+    employee.some(employee => employee.id === id);
 
   return {
-    selectedEmployeeIds: employeeIds,
-    addEmployeeId,
-    removeEmployeeId,
+    selectedEmployee: employee,
+    addEmployee,
+    removeEmployee,
+    checkSelected,
   };
 }

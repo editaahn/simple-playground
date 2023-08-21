@@ -3,16 +3,18 @@ import { findEmployees } from "@apis";
 import { Employee } from "../types";
 
 type UseEmployeeListProps = {
-  addEmployee: (id: number) => void;
+  addEmployee: (employee: Partial<Employee>) => void;
   removeEmployee: (id: number) => void;
+  checkSelected: (id: number) => boolean;
 };
 
-export function useEmployeeList({ addEmployee, removeEmployee }: UseEmployeeListProps) {
-  const { data: employees } = useQuery<Employee[]>('employees', findEmployees);
-  const selectEmployee = (checked: boolean, id: number) => checked ? addEmployee(id) : removeEmployee(id);
+export function useEmployeeList({ addEmployee, removeEmployee, checkSelected }: UseEmployeeListProps) {
+  const { data: employeeTree } = useQuery<Employee>('employeeTree', findEmployees);
+  const selectEmployee = (checked: boolean, employee: Employee) => checked ? addEmployee(employee) : removeEmployee(employee.id);
 
   return {
-    employees,
-    selectEmployee
+    employeeTree,
+    selectEmployee,
+    checkSelected,
   };
 }

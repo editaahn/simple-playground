@@ -1,3 +1,3 @@
 export { Piano } from './piano';
 export { Albums } from './albums';
-export { EmployeeList, useEmployeeChoice } from './employees';
+export { EmployeeList, SelectedEmployeeList, useEmployeeChoice } from './employees';
