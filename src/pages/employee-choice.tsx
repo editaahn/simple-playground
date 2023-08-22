@@ -1,4 +1,4 @@
-import { EmployeeList, SelectedEmployeeList, useEmployeeChoice } from "@libs";
+import { EmployeeChoiceSubmitButton, EmployeeList, SelectedEmployeeList, useEmployeeChoice } from "@libs";
 import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 
@@ -7,9 +7,9 @@ export const EmployeeChoicePage = () => {
 
   return (
     <Stack direction="column">
-      <Stack direction="row">
+      <Stack direction="row" justifyContent="space-between">
         <Typography variant="h1" fontSize={25}>Choose collegues</Typography>
-        {/* <EmployeeChoiceSubmitButton choices={selectedEmployee} /> */}
+        <EmployeeChoiceSubmitButton choices={selectedEmployees.map(employee => employee.id) as number[]} />
       </Stack>
       <Stack direction="row" spacing="30px">
         <EmployeeList
