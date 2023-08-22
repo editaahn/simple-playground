@@ -1,2 +1,2 @@
 export { findAlbums } from './albums';
-export { findEmployees } from './employees';
+export { findEmployees, submitEmployees } from './employees';
