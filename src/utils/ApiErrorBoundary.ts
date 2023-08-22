@@ -2,7 +2,7 @@ import { Component, ReactNode, ErrorInfo } from "react";
 
 interface Props {
 	children: ReactNode;
-	renderFallback: (error: Error) => ReactNode;
+	renderFallback?: (error: Error) => ReactNode;
 	onError?: (error: Error, info: ErrorInfo) => void;
 	ignoreError?: (error: Error) => void;
 }
@@ -31,7 +31,7 @@ export class ApiErrorBoundary extends Component<Props, State> {
 	}
 
 	render() {
-		if (this.state.error !== null) {
+		if (this.state.error !== null && this.props.renderFallback) {
 			return this.props.renderFallback(this.state.error);
 		}
 
