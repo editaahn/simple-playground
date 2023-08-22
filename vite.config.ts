@@ -18,6 +18,10 @@ export default defineConfig({
         find: "@libs",
         replacement: "/src/libs"
       },
+      {
+        find: "@contexts",
+        replacement: "/src/contexts"
+      },
     ],
   },
 });
