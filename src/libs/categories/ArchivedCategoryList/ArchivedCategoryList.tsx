@@ -1,22 +1,20 @@
-import { memo, type FC } from 'react';
-import { CategoryEntity } from '../types';
+import { CategoryContext } from '@contexts';
+import { memo, useContext, type FC } from 'react';
 
-type ArchivedCategoryListProps = {
-  categories: CategoryEntity[];
-  isLoading: boolean;
-};
+export const ArchivedCategoryList: FC = memo(() => {
+  const { getCategoriesByIsArchived, isLoading } = useContext(CategoryContext);
+  const categories = getCategoriesByIsArchived(true);
 
-export const ArchivedCategoryList: FC<ArchivedCategoryListProps> = memo(({ categories, isLoading }) => {
-  if (isLoading) {
+  if (isLoading && !categories.length) {
     return <p>Loading...</p>;
   }
 
   return (
     <ul>
       {categories
-        .map((archivedCategory) => (
-          <li key={archivedCategory.entityId}>
-            {archivedCategory.name}
+        .map((category) => (
+          <li key={category.entityId}>
+            {category.name}
           </li>
         ))}
     </ul>

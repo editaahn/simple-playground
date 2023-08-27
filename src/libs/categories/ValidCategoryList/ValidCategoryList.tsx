@@ -1,24 +1,14 @@
-import { useState, type FC } from 'react';
+import { CategoryContext } from '@contexts';
+import { useContext, useState, type FC } from 'react';
 import { Category } from '../Category';
 import { NewCategory } from '../NewCategory';
-import { CategoryEntity, ValidCategory } from '../types';
+import { CategoryEntity } from '../types';
 
-type ValidCategoryListProps = {
-  categories: CategoryEntity[];
-  isLoading: boolean;
-  handleCreateItem: (category: Pick<CategoryEntity, 'name' | 'description'>) => void;
-  handleEditItem: (category: ValidCategory) => void;
-  handleRemoveItem: (id: string) => void;
-};
-
-export const ValidCategoryList: FC<ValidCategoryListProps> = ({
-  categories,
-  isLoading,
-  handleCreateItem,
-  handleEditItem,
-  handleRemoveItem
-}) => {
+export const ValidCategoryList: FC = () => {
+  const { getCategoriesByIsArchived, isLoading, handleCreateItem } = useContext(CategoryContext);
   const [isCreating, setIsCreating] = useState(false);
+
+  const categories = getCategoriesByIsArchived(false);
 
   if (!categories.length && isLoading) {
     return <p>Loading....</p>;
@@ -36,8 +26,6 @@ export const ValidCategoryList: FC<ValidCategoryListProps> = ({
           <Category
             {...category}
             key={category.entityId}
-            edit={handleEditItem}
-            remove={handleRemoveItem}
           />
         )}
         {isCreating ?

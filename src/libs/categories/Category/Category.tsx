@@ -1,18 +1,16 @@
-import { useRef, useState, type FC } from 'react';
-import { ValidCategory } from '../types';
+import { CategoryContext } from '@contexts';
+import { useContext, useRef, useState, type FC } from 'react';
+import { CategoryEntity } from '../types';
 
-type CategoryProps = Omit<ValidCategory, 'isArchived'> & {
-  edit: (category: ValidCategory) => void;
-  remove: (id: string) => void;
-};
+type CategoryProps = CategoryEntity;
 
 export const Category: FC<CategoryProps> = ({
   entityId,
   name: originalName,
   description: originalDescription,
-  edit,
-  remove,
+  isArchived,
 }) => {
+  const { handleEditItem, handleRemoveItem } = useContext(CategoryContext);
   const [isEditing, setEditing] = useState(false);
 
   const [name, setName] = useState(originalName);
@@ -30,7 +28,7 @@ export const Category: FC<CategoryProps> = ({
   };
   
   const onEdit = () => {
-    edit({ entityId, name, description });
+    handleEditItem({ entityId, name, description, isArchived });
     prevName.current = name;
     prevDescription.current = description;
     setEditing(false);
@@ -49,7 +47,7 @@ export const Category: FC<CategoryProps> = ({
         />
 
         <button onClick={cancel}>Cancel</button>
-        <button onClick={() => remove(entityId)}>Remove</button>
+        <button onClick={() => handleRemoveItem(entityId)}>Remove</button>
         {isDifferent ?
           <button onClick={onEdit}>Edit</button>
           : null}

@@ -1,25 +1,17 @@
-import { ArchivedCategoryList, ValidCategoryList, useCategoryUpdate } from '@libs';
+import { ArchivedCategoryList, ValidCategoryList } from '@libs';
 import { FC } from 'react';
+import { CategoryProvider } from '@contexts';
 
 export const CategoryListPage: FC = () => {
-  const { categories, isLoading, handleCreateItem, handleEditItem, handleRemoveItem } = useCategoryUpdate();
-
   return (
-    <div>
-      <h1>Category List</h1>
-      <ValidCategoryList
-        categories={categories.filter((category) => !category.isArchived)}
-        handleCreateItem={handleCreateItem}
-        handleEditItem={handleEditItem}
-        handleRemoveItem={handleRemoveItem}
-        isLoading={isLoading}
-      />
+    <CategoryProvider>
+      <main>
+        <h1>Category List</h1>
+        <ValidCategoryList />
 
-      <h2>Archive List</h2>
-      <ArchivedCategoryList
-        categories={categories.filter((category) => category.isArchived)}
-        isLoading={isLoading}
-      />
-    </div >
+        <h2>Archive List</h2>
+        <ArchivedCategoryList />
+      </main>
+    </CategoryProvider>
   );
 };
