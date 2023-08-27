@@ -13,7 +13,6 @@ type CategoryContextValue = {
 
 export const CategoryContext = createContext<CategoryContextValue>({
   isLoading: false,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getCategoriesByIsArchived: (_: boolean) => [],
   handleCreateItem: (_) => undefined,
   handleEditItem: (_) => undefined,
