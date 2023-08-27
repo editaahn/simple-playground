@@ -46,6 +46,7 @@ const categoryHandlers = [
     });
     
     return res(
+      ctx.delay(500),
       ctx.status(200),
       ctx.json({ entityId })
     );
@@ -66,6 +67,7 @@ const categoryHandlers = [
     categories.splice(index, 1, editedCategory);
     
     return res(
+      ctx.delay(500),
       ctx.status(200),
       ctx.json({ entityId: editedCategory.entityId })
     );

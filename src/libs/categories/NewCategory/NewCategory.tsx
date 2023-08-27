@@ -1,15 +1,28 @@
-import { useState, type FC } from 'react';
-import { CategoryEntity } from '../types';
+import { CategoryContext } from '@contexts';
+import { useContext, useState, type FC } from 'react';
 
 type NewCategoryProps = {
-  save: (category: Pick<CategoryEntity, 'name' | 'description'>) => void;
   cancel: () => void;
 };
 
-export const NewCategory: FC<NewCategoryProps> = ({ save, cancel }) => {
+export const NewCategory: FC<NewCategoryProps> = ({ cancel }) => {
+  const { handleCreateItem } = useContext(CategoryContext);
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
+  const save = async () => {
+    setIsSaving(true);
+    await handleCreateItem({ name, description});
+    setIsSaving(false);
+    cancel();
+  }
+
+  if (isSaving) {
+    return <li>Saving Item......</li>
+  }
+  
   return (
     <li>
       <input
@@ -22,7 +35,7 @@ export const NewCategory: FC<NewCategoryProps> = ({ save, cancel }) => {
       />
 
       <button onClick={cancel}>Cancel</button>
-      <button onClick={() => save({ name, description })}>Save</button>
+      <button onClick={save}>Save</button>
     </li>
   );
 };

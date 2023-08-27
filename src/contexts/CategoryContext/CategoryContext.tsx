@@ -37,7 +37,7 @@ export function CategoryProvider({ children }: PropsWithChildren) {
 
   const handleCreateItem = async (category: Pick<CategoryEntity, 'name' | 'description'>) => {
     await createCategory(category);
-    fetchCategories();
+    await fetchCategories();
   };
 
   const handleEditItem = async (category: CategoryEntity) => {

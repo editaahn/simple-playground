@@ -12,6 +12,7 @@ export const Category: FC<CategoryProps> = ({
 }) => {
   const { handleEditItem, handleRemoveItem } = useContext(CategoryContext);
   const [isEditing, setEditing] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const [name, setName] = useState(originalName);
   const [description, setDescription] = useState(originalDescription);
@@ -27,12 +28,19 @@ export const Category: FC<CategoryProps> = ({
     setEditing(false);
   };
   
-  const onEdit = () => {
-    handleEditItem({ entityId, name, description, isArchived });
+  const onEdit = async () => {
+    setIsUpdating(true);
+    await handleEditItem({ entityId, name, description, isArchived });
+    
     prevName.current = name;
     prevDescription.current = description;
     setEditing(false);
+    setIsUpdating(false);
   };
+
+  if (isUpdating) {
+    return <li>Updating Item......</li>
+  }
 
   if (isEditing) {
     return (
