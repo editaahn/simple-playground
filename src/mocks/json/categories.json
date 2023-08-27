@@ -1,0 +1,20 @@
+[
+  {
+    "entityId": "1",
+    "name": "Acknowledge or Praise",
+    "description": "Convey acknowledgment and praise to colleagues.",
+    "isArchived": false
+  },
+  {
+    "entityId": "2",
+    "name": "Express Gratitude",
+    "description": "Express feelings of gratitude.",
+    "isArchived": false
+  },
+  {
+    "entityId": "3",
+    "name": "Give Constructive Feedback",
+    "description": "Provide feedback to others.",
+    "isArchived": true
+  }
+]
