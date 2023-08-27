@@ -31,6 +31,7 @@ const employeeHandlers = [
 const categoryHandlers = [
   rest.get('/categories', (req, res, ctx) => {
     return res(
+      ctx.delay(500),
       ctx.status(200),
       ctx.json(categories)
     );

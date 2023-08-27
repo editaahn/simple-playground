@@ -5,6 +5,7 @@ import { CategoryEntity, ValidCategory } from '../types';
 
 type ValidCategoryListProps = {
   categories: CategoryEntity[];
+  isLoading: boolean;
   handleCreateItem: (category: Pick<CategoryEntity, 'name' | 'description'>) => void;
   handleEditItem: (category: ValidCategory) => void;
   handleRemoveItem: (id: string) => void;
@@ -12,13 +13,14 @@ type ValidCategoryListProps = {
 
 export const ValidCategoryList: FC<ValidCategoryListProps> = ({
   categories,
+  isLoading,
   handleCreateItem,
   handleEditItem,
   handleRemoveItem
 }) => {
   const [isCreating, setIsCreating] = useState(false);
 
-  if (!categories.length) {
+  if (!categories.length && isLoading) {
     return <p>Loading....</p>;
   }
 
