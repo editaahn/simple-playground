@@ -1,18 +1,30 @@
 import { useState, type FC } from 'react';
-import { CategoryEntity, ValidCategory } from '../types';
 import { Category } from '../Category';
+import { NewCategory } from '../NewCategory';
+import { CategoryEntity, ValidCategory } from '../types';
 
 type ValidCategoryListProps = {
   categories: CategoryEntity[];
-  handleSaveItem: (category: ValidCategory) => void;
+  handleCreateItem: (category: Pick<CategoryEntity, 'name' | 'description'>) => void;
+  handleEditItem: (category: ValidCategory) => void;
   handleRemoveItem: (id: string) => void;
 };
 
-export const ValidCategoryList: FC<ValidCategoryListProps> = ({ categories, handleSaveItem, handleRemoveItem }) => {
+export const ValidCategoryList: FC<ValidCategoryListProps> = ({
+  categories,
+  handleCreateItem,
+  handleEditItem,
+  handleRemoveItem
+}) => {
   const [isCreating, setIsCreating] = useState(false);
 
   if (!categories.length) {
     return <p>Loading....</p>;
+  }
+
+  const save = (category: Pick<CategoryEntity, 'name' | 'description'>) => {
+    setIsCreating(false);
+    handleCreateItem(category);
   }
 
   return (
@@ -22,11 +34,15 @@ export const ValidCategoryList: FC<ValidCategoryListProps> = ({ categories, hand
           <Category
             {...category}
             key={category.entityId}
-            edit={handleSaveItem}
+            edit={handleEditItem}
             remove={handleRemoveItem}
           />
         )}
-        {/* {isCreating ? <NewCategory /> : null} */}
+        {isCreating ?
+          <NewCategory
+            save={save}
+            cancel={() => setIsCreating(false)}
+          /> : null}
       </ul>
 
       <button onClick={() => setIsCreating(true)}>

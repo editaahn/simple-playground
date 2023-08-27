@@ -2,14 +2,15 @@ import { ArchivedCategoryList, ValidCategoryList, useCategoryUpdate } from '@lib
 import { FC } from 'react';
 
 export const CategoryListPage: FC = () => {
-  const { categories, handleSaveItem, handleRemoveItem } = useCategoryUpdate();
+  const { categories, handleCreateItem, handleEditItem, handleRemoveItem } = useCategoryUpdate();
 
   return (
     <div>
       <h1>Category List</h1>
       <ValidCategoryList
         categories={categories.filter((category) => !category.isArchived)}
-        handleSaveItem={handleSaveItem}
+        handleCreateItem={handleCreateItem}
+        handleEditItem={handleEditItem}
         handleRemoveItem={handleRemoveItem}
       />
 

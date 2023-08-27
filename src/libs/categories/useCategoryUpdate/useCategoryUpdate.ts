@@ -1,6 +1,6 @@
+import { createCategory, editCategory, findCategories, removeCategory } from "@apis";
 import { useEffect, useState } from "react";
-import { CategoryEntity, ValidCategory } from "../types";
-import { findCategories, editCategory, createCategory, removeCategory } from "@apis";
+import { CategoryEntity } from "../types";
 
 export function useCategoryUpdate() {
   const [categories, setCategories] = useState<CategoryEntity[]>([]);
@@ -10,17 +10,17 @@ export function useCategoryUpdate() {
     setCategories(fetchedCategories);
   };
 
-  const handleSaveItem = async (category: ValidCategory) => {
-    if (category.entityId) {
-      await editCategory(category);
-    } else {
-      await createCategory(category);
-    }
+  const handleCreateItem = async (category: Pick<CategoryEntity, 'name' | 'description'>) => {
+    await createCategory(category);
+    fetchCategories();
+  };
+
+  const handleEditItem = async (category: Omit<CategoryEntity, 'isArchived'>) => {
+    await editCategory(category);
     fetchCategories();
   };
 
   const handleRemoveItem = async (itemId: string) => {
-    console.log(itemId)
     await removeCategory(itemId);
     fetchCategories();
   };
@@ -31,7 +31,8 @@ export function useCategoryUpdate() {
 
   return {
     categories,
-    handleSaveItem,
+    handleCreateItem,
+    handleEditItem,
     handleRemoveItem,
   };
 }
