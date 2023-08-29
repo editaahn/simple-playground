@@ -1,1 +1,1 @@
-export const SERVER_HOST = 'https://jsonplaceholder.typicode.com';
+export { scrollImageSources } from './scroll-image-sources';
